@@ -15,7 +15,6 @@ const
 
 #Tool Help Structures
 type
-  
   HEAPENTRY32* = object
     dwSize*: SIZE_T
     hHandle*: HANDLE
@@ -48,8 +47,8 @@ type
     modBaseAddr*: ptr BYTE
     modBaseSize*: DWORD
     hModule*: HMODULE
-    szModule*: array[MAX_MODULE_NAME32 + 1, WCHAR]
-    szExePath*: array[MAX_PATH, WCHAR]
+    szModule*: array[MAX_MODULE_NAME32 + 1, char]
+    szExePath*: array[MAX_PATH, char]
 
   PMODULEENTRY32* = ptr MODULEENTRY32
   LPMODULEENTRY32* = ptr MODULEENTRY32
@@ -64,7 +63,7 @@ type
     th32ParentProcessID*: DWORD
     pcPriClassBase*: LONG
     dwFlags*: DWORD
-    szExeFileName*: array[MAX_PATH, WCHAR]
+    szExeFile*: array[MAX_PATH, char]
 
   PPROCESSENTRY32* = ptr PROCESSENTRY32
   LPPROCESSENTRY32* = ptr PROCESSENTRY32
