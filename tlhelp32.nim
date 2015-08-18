@@ -44,7 +44,7 @@ type
     th32ProcessID*: DWORD
     GlblcntUsage*: DWORD
     ProccntUsage*: DWORD
-    modBaseAddr*: ptr BYTE
+    modBaseAddr*: PBYTE
     modBaseSize*: DWORD
     hModule*: HMODULE
     szModule*: array[MAX_MODULE_NAME32 + 1, char]
@@ -84,32 +84,32 @@ type
 proc CreateToolhelp32Snapshot*(dwFlags, th32ProcessID: DWORD): HANDLE
   {.stdcall, dynlib: "kernel32", importc: "CreateToolhelp32Snapshot".}
 
-proc Heap32First*(lphe: LPHEAPENTRY32, th32ProcessID: DWORD, th32HeapID: ULONG_PTR): BOOL
+proc Heap32First*(lphe: LPHEAPENTRY32, th32ProcessID: DWORD, th32HeapID: ULONG_PTR): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Heap32First".}
 
-proc Heap32ListFirst*(hSnapshot: HANDLE, lphl: LPHEAPLIST32): BOOL
+proc Heap32ListFirst*(hSnapshot: HANDLE, lphl: LPHEAPLIST32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Heap32ListFirst".}
 
-proc Heap32ListNext*(hSnapshot: HANDLE, lphl: LPHEAPLIST32): BOOL
+proc Heap32ListNext*(hSnapshot: HANDLE, lphl: LPHEAPLIST32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Heap32ListNext".}
 
-proc Heap32Next*(lphe: LPHEAPENTRY32): BOOL
+proc Heap32Next*(lphe: LPHEAPENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Heap32Next".}
 
-proc Module32First*(hSnapshot: HANDLE, lpme: LPMODULEENTRY32): BOOL
+proc Module32First*(hSnapshot: HANDLE, lpme: LPMODULEENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Module32First".}
 
-proc Module32Next*(hSnapshot: HANDLE, lpme: LPMODULEENTRY32): BOOL
+proc Module32Next*(hSnapshot: HANDLE, lpme: LPMODULEENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Module32Next"}
 
-proc Process32First*(hSnapshot: HANDLE, lppe: LPPROCESSENTRY32): BOOL
+proc Process32First*(hSnapshot: HANDLE, lppe: LPPROCESSENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Process32First".}
 
-proc Process32Next*(hSnapshot: HANDLE, lppe: LPPROCESSENTRY32): BOOL
+proc Process32Next*(hSnapshot: HANDLE, lppe: LPPROCESSENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Process32Next"}
 
-proc Thread32First*(hSnapshot: HANDLE, lpte: LPTHREADENTRY32): BOOL
+proc Thread32First*(hSnapshot: HANDLE, lpte: LPTHREADENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Thread32First".}
 
-proc Thread32Next*(hSnapshot: HANDLE, lpte: LPTHREADENTRY32): BOOL
+proc Thread32Next*(hSnapshot: HANDLE, lpte: LPTHREADENTRY32): WINBOOL
   {.stdcall, dynlib: "kernel32", importc: "Thread32Next"}
